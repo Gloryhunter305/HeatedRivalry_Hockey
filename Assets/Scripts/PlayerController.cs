@@ -5,8 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] private GameManager game;
+    int timer;
+
+
     [Header("Player Components")]
     private Rigidbody2D _rigidBody2D;
+    public funnyFace funnyFace;
     [SerializeField] private float DirectionalMultipler = 3f;
     public KeyCode upKey, downKey, leftKey, rightKey;
 
@@ -33,31 +39,35 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(upKey))
+        if (game.gameStart == true)
         {
-            // Move in the direction the player is facing (transform.up)
-            _rigidBody2D.AddForce((Vector2)transform.up * moveSpeed);
-        }
-
-        if (Input.GetKey(downKey))        //Charging up and dashing forwards
-        {
-            //_rigidBody2D.AddForce((Vector2)(-transform.up) * moveSpeed);
-
-            //Dashing Mechanic (Charing dash is linear to the amount of speed gained from dash)
-            if (canDash && !isDashing)
+            timer++;
+            if (Input.GetKey(upKey))
             {
-                StartCoroutine(Dash());
+                // Move in the direction the player is facing (transform.up)
+                _rigidBody2D.AddForce((Vector2)transform.up * moveSpeed);
             }
-        }
 
-        if (Input.GetKey(leftKey))
-        {
-            transform.Rotate(Vector3.forward * DirectionalMultipler);
-        }
+            if (Input.GetKey(downKey))        //Charging up and dashing forwards
+            {
+                //_rigidBody2D.AddForce((Vector2)(-transform.up) * moveSpeed);
 
-        if (Input.GetKey(rightKey))
-        {
-            transform.Rotate(Vector3.back * DirectionalMultipler);
+                //Dashing Mechanic (Charing dash is linear to the amount of speed gained from dash)
+                if (canDash && !isDashing)
+                {
+                    StartCoroutine(Dash());
+                }
+            }
+
+            if (Input.GetKey(leftKey))
+            {
+                transform.Rotate(Vector3.forward * DirectionalMultipler);
+            }
+
+            if (Input.GetKey(rightKey))
+            {
+                transform.Rotate(Vector3.back * DirectionalMultipler);
+            }
         }
     }
 
@@ -71,5 +81,14 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(_dashCooldown);
         canDash = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (timer > 300)
+        {
+            funnyFace.StartCoroutine(funnyFace.Hurt());
+            timer = 0;
+        }
     }
 }

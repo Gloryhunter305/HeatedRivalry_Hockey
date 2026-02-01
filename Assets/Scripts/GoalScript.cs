@@ -11,6 +11,8 @@ public class GoalScript : MonoBehaviour
     public funnyFace playerA;
     public funnyFace playerB;
 
+    public AudioSource sound;
+
     [SerializeField] private GoalSide goalSide;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,7 +48,7 @@ public class GoalScript : MonoBehaviour
                 break;
         }
         // Access the SpawnManager to spawn a new puck
-
+        sound.Play();
         
 
         Destroy(collision.gameObject);

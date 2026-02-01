@@ -3,6 +3,15 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+
+    public bool gameStart = false;
+    public GameObject scoreText;
+    public GameObject mainMenu;
+    public GameObject MM;
+    public GameObject controls;
+
+    public funnyFace playerA;
+    public funnyFace playerB;
     //Singleton instance
     public static GameManager Instance { get; private set; }
 
@@ -41,5 +50,25 @@ public class GameManager : MonoBehaviour
         }
 
         OnScoreChanged?.Invoke(leftTeamScore, rightTeamScore);
+    }
+
+    public void GameStart()
+    {
+        gameStart = true;
+        scoreText.SetActive(true);
+        mainMenu.SetActive(false);
+        playerA.StartCoroutine(playerA.Kissy());
+        playerB.StartCoroutine(playerB.Kissy());
+    }
+    public void Controls()
+    {
+        MM.SetActive(false);
+        controls.SetActive(true);
+    }
+    public void Back()
+    {
+        controls.SetActive(false);
+        MM.SetActive(true);
+
     }
 }

@@ -11,12 +11,12 @@ public class funnyFace : MonoBehaviour
     public Sprite happy;
     public Sprite angry;
     public Sprite kissy;
+    public Sprite hurt;
 
     Vector3 laugh;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(Kissy());
     }
 
     // Update is called once per frame
@@ -93,6 +93,24 @@ public class funnyFace : MonoBehaviour
                 face.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -20);
                 yield return new WaitForSeconds(0.35f);
             }
+            face.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            face.sprite = neutral;
+            emoting = false;
+            yield return null;
+        }
+        else
+            yield return null;
+    }
+
+    public IEnumerator Hurt()
+    {
+        if (emoting == false)
+        {
+            emoting = true;
+            face.sprite = hurt;
+            face.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 20);
+            yield return new WaitForSeconds(1.5f);
+            
             face.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
             face.sprite = neutral;
             emoting = false;
