@@ -9,9 +9,12 @@ public class PlayerController : MonoBehaviour
     [Header("Player Components")]
     private PlayerStats Player;
     private Rigidbody2D _rigidBody2D;
+    [SerializeField] private SpriteRenderer _playerPointer;
     public funnyFace funnyFace;
 
     public KeyCode upKey, downKey, leftKey, rightKey;
+    public Color dashingColor = Color.yellow;
+    public Color originalColor = Color.white;
 
     void Start()
     {
@@ -24,6 +27,16 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("PlayerStats component missing on player.", this);
         if (game == null)
             Debug.LogWarning("GameManager reference not set on PlayerController.", this);
+
+        if (_playerPointer != null)
+        {
+            // Capture the actual original color from the child sprite (Inspector default can be overridden)
+            originalColor = _playerPointer.color;
+        }
+        else
+        {
+            Debug.LogWarning("Player pointer SpriteRenderer not found in children.", this);
+        }
     }
 
     void Update()
@@ -32,7 +45,9 @@ public class PlayerController : MonoBehaviour
         if (Player != null)
         {
             transform.root.gameObject.transform.localScale = new Vector3(Player.PlayerSize, Player.PlayerSize, 1);
-            transform.gameObject.GetComponent<Rigidbody2D>().mass = Player.Mass;
+            // reuse cached Rigidbody2D
+            if (_rigidBody2D != null)
+                _rigidBody2D.mass = Player.Mass;
         }
     }
 
@@ -69,7 +84,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.Rotate(Vector3.back * Player.TurnMultipler * Time.fixedDeltaTime);
         }
-        
+
         timer++;
     }
 
@@ -99,7 +114,7 @@ public class PlayerController : MonoBehaviour
         if (Player.isDashing)
             forceMagnitude *= Player.DashKnockbackMultiplier;
 
-        // Use velocity (Rigidbody2D.velocity) -- not linearVelocity
+        // Use velocity (Rigidbody2D.velocity)
         Vector2 playerVelocityContribution = _rigidBody2D.linearVelocity * 0.5f;
 
         Vector2 finalForce = direction * forceMagnitude + playerVelocityContribution;
@@ -118,12 +133,19 @@ public class PlayerController : MonoBehaviour
         Player.canDash = false;
         Player.isDashing = true;
 
+        if (_playerPointer != null)
+            _playerPointer.color = dashingColor;
+
         // Stop lateral momentum before dash
         _rigidBody2D.linearVelocity = Vector2.zero;
         _rigidBody2D.AddForce((Vector2)transform.up * Player.DashForce, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(Player.DashDuration);
         Player.isDashing = false;
+
+        // restore original color
+        if (_playerPointer != null)
+            _playerPointer.color = originalColor;
 
         yield return new WaitForSeconds(Player.DashCooldown);
         Player.canDash = true;
