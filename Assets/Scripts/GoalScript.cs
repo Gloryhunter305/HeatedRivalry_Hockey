@@ -14,19 +14,18 @@ public class GoalScript : MonoBehaviour
 
     public AudioSource sound;
 
+
     [SerializeField] private GoalSide goalSide;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag("Puck"))
-            return;
-
-
-        SpawnManager spawnManager = FindFirstObjectByType<SpawnManager>();
-        // Event of goal being scored, which team scored can be determined by goalSide
-        switch (goalSide)
+        if (GameManager.Instance.leftTeamScore < 10 && GameManager.Instance.rightTeamScore < 10)
         {
+            if (!collision.gameObject.CompareTag("Puck")) return;
+            SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
 
+            switch (goalSide)
+            {
             case GoalSide.Left:
                 Debug.Log("Goal Scored by Right Team!");
                 GameManager.Instance.AddScore(GoalSide.Right);
@@ -70,11 +69,13 @@ public class GoalScript : MonoBehaviour
                 playerB.StartCoroutine(playerB.Angry());
                 playerA.StartCoroutine(playerA.Happy());
                 break;
-        }
-        // Access the SpawnManager to spawn a new puck
-        sound.Play();
-        
+            }
+            // Access the SpawnManager to spawn a new puck
+            if (!sound.isPlaying)
+                sound.Play();
 
-        Destroy(collision.gameObject);
+
+            Destroy(collision.gameObject);
+        }
     }
 }

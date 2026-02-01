@@ -108,9 +108,11 @@ public class funnyFace : MonoBehaviour
         {
             emoting = true;
             face.sprite = hurt;
-            face.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 20);
-            yield return new WaitForSeconds(1.5f);
-            
+            for (int i = 0; i < 100; i++)
+            {
+                face.gameObject.transform.localRotation *= Quaternion.Euler(0, 0, 3);
+                yield return new WaitForSeconds(0.01f);
+            }
             face.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
             face.sprite = neutral;
             emoting = false;

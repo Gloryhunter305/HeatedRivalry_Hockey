@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameManager game;
-    int timer;
+    int timer = 300;
 
     [Header("Player Components")]
     private PlayerStats Player;
