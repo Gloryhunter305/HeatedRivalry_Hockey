@@ -8,6 +8,9 @@ public enum GoalSide
 
 public class GoalScript : MonoBehaviour
 {
+    public funnyFace playerA;
+    public funnyFace playerB;
+
     [SerializeField] private GoalSide goalSide;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,6 +31,8 @@ public class GoalScript : MonoBehaviour
                 {
                     spawnManager.SpawnPuckRight();
                 }
+                playerA.StartCoroutine(playerA.Angry());
+                playerB.StartCoroutine(playerB.Happy());
                 break;
             case GoalSide.Right:
                 Debug.Log("Goal Scored by Left Team!");
@@ -36,6 +41,8 @@ public class GoalScript : MonoBehaviour
                 {
                     spawnManager.SpawnPuckLeft();
                 }
+                playerB.StartCoroutine(playerB.Angry());
+                playerA.StartCoroutine(playerA.Happy());
                 break;
         }
         // Access the SpawnManager to spawn a new puck
