@@ -1583,6 +1583,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0694647ce4d2c984aa9faae01793ebbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mask: {fileID: 83142103}
+  empty: {fileID: 8995154407686431259, guid: 128d9a07e3e000145a8bed562754cefa, type: 3}
+  hockey: {fileID: 21300000, guid: 07dc67a5e2d669e40bc7793fd8055f9e, type: 3}
+  luchador: {fileID: 21300000, guid: f76ea7e5b2976c24f8f01c504ef1ff1c, type: 3}
+  oni: {fileID: 21300000, guid: bee27b14f0cf62c40b4b49fa852582d1, type: 3}
 --- !u!1 &280446817
 GameObject:
   m_ObjectHideFlags: 0
@@ -3252,7 +3257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 78de7b380f10a4e4d83742a85bd8b2b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3900,7 +3905,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 95b9e7953a8dd914f8d46b548e600a46, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5530,6 +5535,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0694647ce4d2c984aa9faae01793ebbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mask: {fileID: 1514799680}
+  empty: {fileID: 8995154407686431259, guid: 128d9a07e3e000145a8bed562754cefa, type: 3}
+  hockey: {fileID: 21300000, guid: 07dc67a5e2d669e40bc7793fd8055f9e, type: 3}
+  luchador: {fileID: 21300000, guid: f76ea7e5b2976c24f8f01c504ef1ff1c, type: 3}
+  oni: {fileID: 21300000, guid: bee27b14f0cf62c40b4b49fa852582d1, type: 3}
 --- !u!1 &1662515993
 GameObject:
   m_ObjectHideFlags: 0

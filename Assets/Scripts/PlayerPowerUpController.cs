@@ -6,6 +6,12 @@ public class PlayerPowerUpController : MonoBehaviour
     public PlayerStats Stats { get; private set; }
     private List<PowerUpInstance> activePowerUps = new List<PowerUpInstance>();
 
+    public SpriteRenderer mask;
+    public Sprite empty;
+    public Sprite hockey;
+    public Sprite luchador;
+    public Sprite oni;
+
     public bool HasActivePowerUp => activePowerUps.Count > 0;
 
     private void Awake()
@@ -28,6 +34,7 @@ public class PlayerPowerUpController : MonoBehaviour
                 if (instance.ability != null && Stats != null)
                 {
                     instance.ability.Remove(Stats);
+                    mask.sprite = empty;
                 }
 
                 activePowerUps.RemoveAt(i);
@@ -48,6 +55,13 @@ public class PlayerPowerUpController : MonoBehaviour
         var instance = new PowerUpInstance(newPowerUp);
         activePowerUps.Add(instance);
         newPowerUp.Apply(Stats);
+        Debug.Log(newPowerUp.name);
+        if (newPowerUp.name == "BigTanky")
+            mask.sprite = hockey;
+        if (newPowerUp.name == "FasterStronger")
+            mask.sprite = oni;
+        if (newPowerUp.name == "ImmuneKnockback")
+            mask.sprite = luchador;
         return true;
     }
 }
