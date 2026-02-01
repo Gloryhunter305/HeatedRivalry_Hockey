@@ -16,7 +16,7 @@ public class funnyFace : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(Angry());
+        StartCoroutine(Kissy());
     }
 
     // Update is called once per frame
@@ -76,6 +76,27 @@ public class funnyFace : MonoBehaviour
                 yield return null;
 
             }
+        }
+        else
+            yield return null;
+    }
+    public IEnumerator Kissy()
+    {
+        if (emoting == false)
+        {
+            emoting = true;
+            face.sprite = kissy;
+            for (int i = 0; i < 2; i++)
+            {
+                face.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 20);
+                yield return new WaitForSeconds(0.35f);
+                face.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -20);
+                yield return new WaitForSeconds(0.35f);
+            }
+            face.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            face.sprite = neutral;
+            emoting = false;
+            yield return null;
         }
         else
             yield return null;
