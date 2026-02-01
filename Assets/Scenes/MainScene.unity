@@ -1310,10 +1310,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 0.05
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 9e0b53e6c9cc9964e8e187183c123070, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1423,16 +1423,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSize: 1
-  MoveSpeed: 5
-  TurnMultipler: 3
+  MoveSpeed: 10
+  TurnMultipler: 240
   DashForce: 10
   DashDuration: 0.5
   DashCooldown: 2
   isDashing: 0
   canDash: 1
   Mass: 1
-  KnockbackForce: 5
-  DashKnockbackMultiplier: 2
+  KnockbackForce: 4
+  DashKnockbackMultiplier: 4
   RecoilMultiplier: 0.5
   applyPlayerKnockback: 1
 --- !u!114 &223306712
@@ -4964,10 +4964,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 0.05
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 9e0b53e6c9cc9964e8e187183c123070, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5043,16 +5043,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSize: 1
-  MoveSpeed: 5
-  TurnMultipler: 3
+  MoveSpeed: 10
+  TurnMultipler: 240
   DashForce: 10
   DashDuration: 0.5
   DashCooldown: 2
   isDashing: 0
   canDash: 1
   Mass: 1
-  KnockbackForce: 5
-  DashKnockbackMultiplier: 2
+  KnockbackForce: 4
+  DashKnockbackMultiplier: 4
   RecoilMultiplier: 0.5
   applyPlayerKnockback: 1
 --- !u!114 &1637405641
