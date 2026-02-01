@@ -2,19 +2,31 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject SpawnField;
+    public GameObject SpawnFieldLeft;
+    public GameObject SpawnFieldRight;
     public GameObject puckPrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SpawnPuck();
+        Instantiate(puckPrefab, new Vector2(0,0), Quaternion.identity);
+        Instantiate(puckPrefab, new Vector2(0,3), Quaternion.identity);
+        Instantiate(puckPrefab, new Vector2(0,-3), Quaternion.identity);
     }
 
     //Method to use to spawn a new puck within the spawn field
-    public void SpawnPuck()
+    public void SpawnPuckLeft()
     {
-        Vector3 fieldPosition = SpawnField.transform.position;
-        Vector3 fieldScale = SpawnField.transform.localScale;
+        Vector3 fieldPosition = SpawnFieldLeft.transform.position;
+        Vector3 fieldScale = SpawnFieldLeft.transform.localScale;
+        float randomX = Random.Range(fieldPosition.x - fieldScale.x / 2, fieldPosition.x + fieldScale.x / 2);
+        float randomY = Random.Range(fieldPosition.y - fieldScale.y / 2, fieldPosition.y + fieldScale.y / 2);
+        Vector3 spawnPosition = new Vector3(randomX, randomY, fieldPosition.z);
+        Instantiate(puckPrefab, spawnPosition, Quaternion.identity);
+    }
+    public void SpawnPuckRight()
+    {
+        Vector3 fieldPosition = SpawnFieldRight.transform.position;
+        Vector3 fieldScale = SpawnFieldRight.transform.localScale;
         float randomX = Random.Range(fieldPosition.x - fieldScale.x / 2, fieldPosition.x + fieldScale.x / 2);
         float randomY = Random.Range(fieldPosition.y - fieldScale.y / 2, fieldPosition.y + fieldScale.y / 2);
         Vector3 spawnPosition = new Vector3(randomX, randomY, fieldPosition.z);
@@ -24,6 +36,7 @@ public class SpawnManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(SpawnField.transform.position, SpawnField.transform.localScale);
+        Gizmos.DrawWireCube(SpawnFieldLeft.transform.position, SpawnFieldLeft.transform.localScale);
+        Gizmos.DrawWireCube(SpawnFieldRight.transform.position, SpawnFieldRight.transform.localScale);
     }
 }
