@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] private GameManager game;
+    int timer;
+
+
     [Header("Player Components")]
     PlayerStats Player;
     private Rigidbody2D _rigidBody2D;
+    public funnyFace funnyFace;
+    [SerializeField] private float DirectionalMultipler = 3f;
     public KeyCode upKey, downKey, leftKey, rightKey;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(upKey))
+        if (game.gameStart == true)
         {
             // Move in the direction the player is facing (transform.up)
             _rigidBody2D.AddForce((Vector2)transform.up * Player.MoveSpeed);
@@ -35,19 +42,22 @@ public class PlayerController : MonoBehaviour
 
             //Dashing Mechanic (Charing dash is linear to the amount of speed gained from dash)
             if (Player.canDash && !Player.isDashing)
+            timer++;
+            if (Input.GetKey(upKey))
             {
-                StartCoroutine(Dash());
+                // Move in the direction the player is facing (transform.up)
+                _rigidBody2D.AddForce((Vector2)transform.up * moveSpeed);
             }
-        }
 
-        if (Input.GetKey(leftKey))
-        {
-            transform.Rotate(Vector3.forward * Player.TurnMultipler);
-        }
+            if (Input.GetKey(leftKey))
+            {
+                transform.Rotate(Vector3.forward * Player.TurnMultipler);
+            }
 
-        if (Input.GetKey(rightKey))
-        {
-            transform.Rotate(Vector3.back * Player.TurnMultipler);
+            if (Input.GetKey(rightKey))
+            {
+                transform.Rotate(Vector3.back * Player.TurnMultipler);
+            }
         }
     }
 
@@ -87,6 +97,26 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 recoil = -direction * (forceMagnitude * Player.RecoilMultiplier);
             _rigidBody2D.AddForce(recoil, ForceMode2D.Impulse);
+            if (Input.GetKey(downKey))        //Charging up and dashing forwards
+            {
+                //_rigidBody2D.AddForce((Vector2)(-transform.up) * moveSpeed);
+
+                //Dashing Mechanic (Charing dash is linear to the amount of speed gained from dash)
+                if (canDash && !isDashing)
+                {
+                    StartCoroutine(Dash());
+                }
+            }
+
+            if (Input.GetKey(leftKey))
+            {
+                transform.Rotate(Vector3.forward * DirectionalMultipler);
+            }
+
+            if (Input.GetKey(rightKey))
+            {
+                transform.Rotate(Vector3.back * DirectionalMultipler);
+            }
         }
     }
 
@@ -103,5 +133,14 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(Player.DashCooldown);
         Player.canDash = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (timer > 300)
+        {
+            funnyFace.StartCoroutine(funnyFace.Hurt());
+            timer = 0;
+        }
     }
 }
