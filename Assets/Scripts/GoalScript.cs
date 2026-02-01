@@ -54,7 +54,7 @@ public class GoalScript : MonoBehaviour
                 GameManager.Instance.AddScore(GoalSide.Left);
 
                 //PowerUp spawn on right side
-                if (GameManager.Instance.rightTeamScore % 3 == 0)
+                if (GameManager.Instance.leftTeamScore % 3 == 0)
                 {
                     if (spawnManager != null)
                     {

@@ -4481,6 +4481,10 @@ MonoBehaviour:
   SpawnFieldLeft: {fileID: 859779896}
   SpawnFieldRight: {fileID: 1171346577}
   puckPrefab: {fileID: 4804708464623544351, guid: 5de920351d2f012479bea6053843d99e, type: 3}
+  powerUpPrefabs:
+  - {fileID: 8977883090949900720, guid: 622a04ec52fbb0e438e0d63ce5fb60d3, type: 3}
+  - {fileID: 8366747805641489884, guid: faad024e0fce0844c9c3960ead9d3f3a, type: 3}
+  - {fileID: 84498157721225248, guid: 59efa2774b527b440932559ffc556abf, type: 3}
 --- !u!4 &1550509288
 Transform:
   m_ObjectHideFlags: 0
