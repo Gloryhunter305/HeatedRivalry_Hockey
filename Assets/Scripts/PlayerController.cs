@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     PlayerStats Player;
     private Rigidbody2D _rigidBody2D;
     public funnyFace funnyFace;
-    [SerializeField] private float DirectionalMultipler = 3f;
+    //[SerializeField] private float DirectionalMultipler = 3f;
     public KeyCode upKey, downKey, leftKey, rightKey;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(upKey))
             {
                 // Move in the direction the player is facing (transform.up)
-                _rigidBody2D.AddForce((Vector2)transform.up * moveSpeed);
+                _rigidBody2D.AddForce((Vector2)transform.up * Player.MoveSpeed);
             }
 
             if (Input.GetKey(leftKey))
@@ -66,6 +66,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Puck"))
         {
             ApplyKnockback(collision);
+        }
+
+        if (timer > 300)
+        {
+            funnyFace.StartCoroutine(funnyFace.Hurt());
+            timer = 0;
         }
     }
 
@@ -102,7 +108,7 @@ public class PlayerController : MonoBehaviour
                 //_rigidBody2D.AddForce((Vector2)(-transform.up) * moveSpeed);
 
                 //Dashing Mechanic (Charing dash is linear to the amount of speed gained from dash)
-                if (canDash && !isDashing)
+                if (Player.canDash && Player.isDashing)
                 {
                     StartCoroutine(Dash());
                 }
@@ -110,12 +116,12 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(leftKey))
             {
-                transform.Rotate(Vector3.forward * DirectionalMultipler);
+                transform.Rotate(Vector3.forward * Player.TurnMultipler);
             }
 
             if (Input.GetKey(rightKey))
             {
-                transform.Rotate(Vector3.back * DirectionalMultipler);
+                transform.Rotate(Vector3.back * Player.TurnMultipler);
             }
         }
     }
@@ -133,14 +139,5 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(Player.DashCooldown);
         Player.canDash = true;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (timer > 300)
-        {
-            funnyFace.StartCoroutine(funnyFace.Hurt());
-            timer = 0;
-        }
     }
 }

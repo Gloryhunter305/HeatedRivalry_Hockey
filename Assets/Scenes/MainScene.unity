@@ -1234,6 +1234,8 @@ GameObject:
   - component: {fileID: 223306707}
   - component: {fileID: 223306705}
   - component: {fileID: 223306710}
+  - component: {fileID: 223306712}
+  - component: {fileID: 223306711}
   m_Layer: 0
   m_Name: PlayerA
   m_TagString: Untagged
@@ -1255,15 +1257,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game: {fileID: 1892535538}
   funnyFace: {fileID: 401020903}
-  DirectionalMultipler: 8
   upKey: 119
   downKey: 115
   leftKey: 97
   rightKey: 100
-  _dashForce: 7
-  _dashDuration: 0.5
-  _dashCooldown: 1
-  moveSpeed: 5
 --- !u!58 &223306706
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1413,6 +1410,43 @@ MonoBehaviour:
   flashBang: {fileID: 1236134628}
   expand: {fileID: 998129526}
   boom: {fileID: 1892535539}
+--- !u!114 &223306711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223306704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd162a0f46160184a95e38f8d68d66a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSize: 1
+  MoveSpeed: 5
+  TurnMultipler: 3
+  DashForce: 10
+  DashDuration: 0.5
+  DashCooldown: 2
+  isDashing: 0
+  canDash: 1
+  Mass: 1
+  KnockbackForce: 5
+  DashKnockbackMultiplier: 2
+  RecoilMultiplier: 0.5
+  applyPlayerKnockback: 1
+--- !u!114 &223306712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223306704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0694647ce4d2c984aa9faae01793ebbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &280446817
 GameObject:
   m_ObjectHideFlags: 0
@@ -3237,15 +3271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game: {fileID: 0}
   funnyFace: {fileID: 0}
-  DirectionalMultipler: 4
   upKey: 273
   downKey: 274
   leftKey: 276
   rightKey: 275
-  _dashForce: 5
-  _dashDuration: 0.5
-  _dashCooldown: 1
-  moveSpeed: 3
 --- !u!50 &1013739808
 Rigidbody2D:
   serializedVersion: 5
@@ -4840,6 +4869,8 @@ GameObject:
   - component: {fileID: 1637405638}
   - component: {fileID: 1637405637}
   - component: {fileID: 1637405636}
+  - component: {fileID: 1637405641}
+  - component: {fileID: 1637405640}
   m_Layer: 0
   m_Name: PlayerB
   m_TagString: Player
@@ -4916,15 +4947,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game: {fileID: 1892535538}
   funnyFace: {fileID: 2091138726}
-  DirectionalMultipler: 8
   upKey: 273
   downKey: 274
   leftKey: 276
   rightKey: 275
-  _dashForce: 7
-  _dashDuration: 0.5
-  _dashCooldown: 1
-  moveSpeed: 5
 --- !u!50 &1637405637
 Rigidbody2D:
   serializedVersion: 5
@@ -5004,6 +5030,43 @@ Transform:
   - {fileID: 47841901}
   m_Father: {fileID: 2091138727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1637405640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637405634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd162a0f46160184a95e38f8d68d66a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSize: 1
+  MoveSpeed: 5
+  TurnMultipler: 3
+  DashForce: 10
+  DashDuration: 0.5
+  DashCooldown: 2
+  isDashing: 0
+  canDash: 1
+  Mass: 1
+  KnockbackForce: 5
+  DashKnockbackMultiplier: 2
+  RecoilMultiplier: 0.5
+  applyPlayerKnockback: 1
+--- !u!114 &1637405641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637405634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0694647ce4d2c984aa9faae01793ebbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1662515993
 GameObject:
   m_ObjectHideFlags: 0
