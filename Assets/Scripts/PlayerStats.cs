@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    [Header("Player Size")]
+    public float PlayerSize = 1f;
+
     [Header("Player Movement")]
     public float MoveSpeed = 5f;
     public float TurnMultipler = 3f;
@@ -15,7 +18,7 @@ public class PlayerStats : MonoBehaviour
 
 
     [Header("Physics Settings")]
-    public float Mass = 1f;
+    public float Mass = 1f;     //corelates with PlayerSize
     public float KnockbackForce = 5f;
     public float DashKnockbackMultiplier = 2f;
     public float RecoilMultiplier = 0.5f;

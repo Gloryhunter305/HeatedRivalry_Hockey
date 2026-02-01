@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class Luchador : MonoBehaviour
+[CreateAssetMenu(menuName = "PowerUps/KnockbackImmunity")]
+public class KnockbackImmunity : PowerUp
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    //Luchador: Grants immunity to knockback
+    public override void Apply(PlayerStats stats)
     {
-        
+        stats.applyPlayerKnockback = false;
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void Remove(PlayerStats stats)
     {
-        
+        stats.applyPlayerKnockback = true;
     }
 }
