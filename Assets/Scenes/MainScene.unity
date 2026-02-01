@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 198018539}
   - component: {fileID: 198018540}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,7 +488,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 0.5
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 315474004}
   - component: {fileID: 315474005}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 507160963}
   - component: {fileID: 507160964}
   m_Layer: 0
-  m_Name: Square (3)
+  m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1292,7 +1292,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 0.5
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -1612,7 +1612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1483226685}
   m_Layer: 0
-  m_Name: Walls
+  m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1696,7 +1696,7 @@ GameObject:
   - component: {fileID: 1626813351}
   - component: {fileID: 1626813352}
   m_Layer: 0
-  m_Name: Square (2)
+  m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
