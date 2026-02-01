@@ -5,6 +5,10 @@ public class SpawnManager : MonoBehaviour
     public GameObject SpawnFieldLeft;
     public GameObject SpawnFieldRight;
     public GameObject puckPrefab;
+
+    [Header("PowerUp Spawning")]
+    public GameObject[] powerUpPrefabs;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,10 +37,50 @@ public class SpawnManager : MonoBehaviour
         Instantiate(puckPrefab, spawnPosition, Quaternion.identity);
     }
 
+    public void SpawnPowerUpLeft()
+    {
+        SpawnPowerUpInField(SpawnFieldLeft);
+    }
+
+    public void SpawnPowerUpRight()
+    {
+        SpawnPowerUpInField(SpawnFieldRight);
+    }
+
+    private void SpawnPowerUpInField(GameObject spawnField)
+    {
+        if (spawnField == null) return;
+
+        if (powerUpPrefabs == null || powerUpPrefabs.Length == 0)
+        {
+            Debug.LogWarning("No powerUpPrefabs assigned on SpawnManager.", this);
+            return;
+        }
+
+        // pick a random prefab from the provided list (designer should assign 3)
+        int index = Random.Range(0, powerUpPrefabs.Length);
+        GameObject prefabToSpawn = powerUpPrefabs[index];
+        if (prefabToSpawn == null)
+        {
+            Debug.LogWarning($"powerUpPrefabs[{index}] is null.", this);
+            return;
+        }
+
+        Vector3 fieldPosition = spawnField.transform.position;
+        Vector3 fieldScale = spawnField.transform.localScale;
+        float randomX = Random.Range(fieldPosition.x - fieldScale.x / 2, fieldPosition.x + fieldScale.x / 2);
+        float randomY = Random.Range(fieldPosition.y - fieldScale.y / 2, fieldPosition.y + fieldScale.y / 2);
+        Vector3 spawnPosition = new Vector3(randomX, randomY, fieldPosition.z);
+
+        Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(SpawnFieldLeft.transform.position, SpawnFieldLeft.transform.localScale);
-        Gizmos.DrawWireCube(SpawnFieldRight.transform.position, SpawnFieldRight.transform.localScale);
+        if (SpawnFieldLeft != null)
+            Gizmos.DrawWireCube(SpawnFieldLeft.transform.position, SpawnFieldLeft.transform.localScale);
+        if (SpawnFieldRight != null)
+            Gizmos.DrawWireCube(SpawnFieldRight.transform.position, SpawnFieldRight.transform.localScale);
     }
 }

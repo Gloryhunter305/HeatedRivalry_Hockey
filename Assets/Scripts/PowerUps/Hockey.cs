@@ -9,13 +9,13 @@ public class Hockey : PowerUp
         stats.PlayerSize *= 1.5f;
         stats.Mass *= 2f;
         stats.KnockbackForce *= 0.5f;
-        stats.DashKnockbackMultiplier *= 0.5f;
+        stats.DashKnockbackMultiplier /= 0.5f;
     }
     public override void Remove(PlayerStats stats)
     {
         stats.PlayerSize /= 1.5f;
         stats.Mass /= 2f;
         stats.KnockbackForce /= 0.5f;
-        stats.DashKnockbackMultiplier /= 0.5f;
+        stats.DashKnockbackMultiplier *= 0.5f;
     }
 }

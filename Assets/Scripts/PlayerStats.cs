@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Player Size")]
-    public float PlayerSize = 1f;
+    public float PlayerSize = 2f;
 
     [Header("Player Movement")]
     public float MoveSpeed = 5f;

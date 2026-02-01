@@ -17,7 +17,11 @@ public class PowerPickUp : MonoBehaviour
         if (powerUpController == null || powerUp == null)
             return;
 
-        powerUpController.AddPowerUp(powerUp);
-        Destroy(gameObject);
+        // Only destroy the pickup if the controller accepted the powerup
+        bool accepted = powerUpController.AddPowerUp(powerUp);
+        if (accepted)
+        {
+            Destroy(gameObject);
+        }
     }
 }

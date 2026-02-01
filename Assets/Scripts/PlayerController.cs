@@ -28,7 +28,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Keep Update empty (physics in FixedUpdate), but still useful to validate start state if needed.
+        //Grab top parent and set scale based on player size
+        if (Player != null)
+        {
+            transform.root.gameObject.transform.localScale = new Vector3(Player.PlayerSize, Player.PlayerSize, 1);
+            transform.gameObject.GetComponent<Rigidbody2D>().mass = Player.Mass;
+        }
     }
 
     private void FixedUpdate()

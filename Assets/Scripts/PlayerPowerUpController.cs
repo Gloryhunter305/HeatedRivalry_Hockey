@@ -6,6 +6,8 @@ public class PlayerPowerUpController : MonoBehaviour
     public PlayerStats Stats { get; private set; }
     private List<PowerUpInstance> activePowerUps = new List<PowerUpInstance>();
 
+    public bool HasActivePowerUp => activePowerUps.Count > 0;
+
     private void Awake()
     {
         Stats = GetComponent<PlayerStats>();
@@ -33,14 +35,20 @@ public class PlayerPowerUpController : MonoBehaviour
         }
     }
 
-    public void AddPowerUp(PowerUp newPowerUp)
+    // Returns true if the powerup was applied, false if rejected (e.g. already have a powerup)
+    public bool AddPowerUp(PowerUp newPowerUp)
     {
         if (newPowerUp == null || Stats == null)
-            return;
+            return false;
+
+        // Prevent stealing/picking up another powerup if player already has one
+        if (HasActivePowerUp)
+            return false;
 
         var instance = new PowerUpInstance(newPowerUp);
         activePowerUps.Add(instance);
         newPowerUp.Apply(Stats);
+        return true;
     }
 }
 
