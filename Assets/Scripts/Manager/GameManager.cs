@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,14 @@ public class GameManager : MonoBehaviour
 
     public funnyFace playerA;
     public funnyFace playerB;
+
+    public GameObject red;
+    public GameObject blue;
+
+
+    public AudioSource win;
+    int timer;
+
     //Singleton instance
     public static GameManager Instance { get; private set; }
 
@@ -36,6 +45,28 @@ public class GameManager : MonoBehaviour
         leftTeamScore = 0;
         rightTeamScore = 0;
         OnScoreChanged?.Invoke(leftTeamScore, rightTeamScore);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey("0"))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (leftTeamScore >= 10)
+            red.SetActive(true);
+        if (rightTeamScore >= 10)
+            blue.SetActive(true);
+        
+        if (timer > 300)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    private void FixedUpdate()
+    {
+        if (leftTeamScore >= 10 || rightTeamScore >= 10)
+        {
+            timer++;
+            if (!win.isPlaying)
+                win.Play();
+        }
     }
 
     public void AddScore(GoalSide team)
